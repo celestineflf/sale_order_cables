@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_product_form_cable_views" model="ir.ui.view">
+        <field name="name">product.product.form.cable.views</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page name="cable" string="Cable Data">
+                    <group>
+                        <field name="is_standard_cable" force_save="1" attrs="{'invisible': ['|','|','|',('is_cable_eye', '=', True),('is_strip', '=', True),('cable_product', '=', True),('cable_make', '=', True)]}"/>
+                        <field name="is_cable_eye" force_save="1" attrs="{'invisible': ['|','|','|',('is_standard_cable', '=', True),('is_strip', '=', True),('cable_product', '=', True),('cable_make', '=', True)]}"/>
+                        <field name="cable_color" attrs="{'invisible': [('is_standard_cable', '=', False)]}"/>
+                        <field name="cable_thick"/>
+                        <field name="eye_type" attrs="{'invisible': [('is_cable_eye', '=', False)]}"/>
+                        <field name="cable_product" attrs="{'invisible': [('is_cable_eye', '=', True)]}"/>
+                        <field name="is_strip" attrs="{'invisible': ['|',('is_cable_eye', '=', True),('is_standard_cable', '=', 'True')]}"/>
+                        <field name="cable_make" attrs="{'invisible': ['|',('is_cable_eye', '=', True),('is_standard_cable', '=', 'True')]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
